@@ -21,11 +21,14 @@ class Router {
          */
 
         // Begin
+
+        //Default initialization
         $this->controller['class'] = '';
         $this->controller['method'] = '';
         $this->controller['parameters'] = '';
+        $this->controller['flag'] = '';
 
-       $this->parse();
+        $this->parse();
 
        switch ($this->routing()){
 
@@ -43,6 +46,8 @@ class Router {
                break;
 
        }
+
+       echo $this->controller['flag'];
 
        // End
     }
@@ -79,31 +84,42 @@ class Router {
    private function routing(){
 
        if(empty($this->controller['class'])){
-
-           // Url is empty -> redirect to index
-           //$controller = new Index();
-          // $controller->index();
+           
            return 'index';
 
        }else{
 
-           if(file_exists('controllers/'.$this->controller['class'].'.php')){
+               if(file_exists('controllers/'.$this->controller['class'].'.php')){
 
-               require 'controllers/'.$this->controller['class'].'.php';
+                   require 'controllers/' . $this->controller['class'] .'.php';
 
-               $this->app_controller = new $this->controller['class'];
-
-               if(method_exists($this->app_controller,$this->controller['method'])){
-
-                   return 'class/method';
-                   $this->controller['flag'] = 2;
-               }
-
-               $this->controller['flag'] = 3;
-               return 'class';
+                   $this->app_controller = new $this->controller['class'];
 
 
-           }else{
+
+                   if(!empty($this->controller['method'])){
+
+
+                       if(method_exists($this->app_controller,$this->controller['method'])){
+
+                           $this->controller['flag'] = 2;
+                           return 'class/method';
+
+                       }else {
+
+                           $this->controller['flag'] = 0;
+                           return 'error';
+                       }
+
+                   }
+
+
+                   $this->controller['flag'] = 1;
+                   return 'class';
+
+
+               }else {
+
                    $this->controller['flag'] = 0;
                    return 'error';
 
