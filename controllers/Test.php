@@ -8,7 +8,7 @@
 
 class Test
 {
-   public function __Test(){
+   public function __construct(){
 
    }
 
