@@ -5,10 +5,11 @@
  * Time: 1:19 PM
  */
 
-
+require './models/Index_model.php';
 
 class Index extends Controller
 {
+
     public function __construct(){
 
         parent::__construct();
@@ -17,7 +18,8 @@ class Index extends Controller
 
     public function index(){
 
-        echo 'Class index';
+        $views = new Index_model();
+        $views->index();
     }
 
     public function method(){
