@@ -5,13 +5,12 @@
  * Time: 1:19 PM
  */
 
-
+require 'controllers/Controller.php';
 
 class Router {
 
     private $URL ;
     private $controller;
-    private $app_controller;
 
     public function __construct(){
 
@@ -33,29 +32,33 @@ class Router {
        switch ($this->routing()){
 
            case 'index':
-               echo 'index';
+               require 'controllers/Index.php';
+               $app_controller = new Index();
+               $app_controller->index();
                break;
            case 'class':
-               echo 'class';
+               //require 'controllers/' . $this->controller['class'] .'.php';
+               $app_controller = new $this->controller['class'];
+               $app_controller->index();
                break;
            case 'class/method':
-               echo 'class/method';
+               //require 'controllers/' . $this->controller['class'] .'.php';
+               $app_controller = new $this->controller['class'];
+               $method = $this->controller['method'];
+               $app_controller->$method($this->controller['parameters']);
                break;
            case 'error':
-               echo 'error';
-               break;
+              require 'controllers/Error_404.php';
+              $app_controller = new Error_404();
+              break;
 
        }
-
-       echo $this->controller['flag'];
 
        // End
     }
 
    private function parse(){
 
-
-       //echo $_SERVER['REQUEST_URI'].'<br>';
 
        // Getting url
        $this->URL = rtrim($_SERVER['REQUEST_URI'], '/');
@@ -84,7 +87,7 @@ class Router {
    private function routing(){
 
        if(empty($this->controller['class'])){
-           
+
            return 'index';
 
        }else{
@@ -93,14 +96,14 @@ class Router {
 
                    require 'controllers/' . $this->controller['class'] .'.php';
 
-                   $this->app_controller = new $this->controller['class'];
+                   $test_app_controller = new $this->controller['class'];
 
 
 
                    if(!empty($this->controller['method'])){
 
 
-                       if(method_exists($this->app_controller,$this->controller['method'])){
+                       if(method_exists($test_app_controller,$this->controller['method'])){
 
                            $this->controller['flag'] = 2;
                            return 'class/method';

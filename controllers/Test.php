@@ -1,19 +1,31 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: bansc
+ * User: Ro Kovalenko
  * Date: 12/30/2017
- * Time: 2:43 PM
+ * Time: 1:19 PM
  */
 
-class Test
+
+
+class Test extends Controller
 {
+
    public function __construct(){
 
+       parent::__construct();
    }
 
-   public function method(){
+   public function index(){
 
+        echo 'Test index';
+   }
+
+   public function method($parametrs_income){
+
+      $this->parameters = $parametrs_income;
+
+       echo $this->parameters.'<br>';
+       echo 'Test method';
    }
 
 }
