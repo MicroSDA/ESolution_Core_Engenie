@@ -9,7 +9,7 @@ class Controller
 {
 
     protected $parameters = '';
-    protected $views;
+    protected $models;
 
     public function __construct() {
 

@@ -6,6 +6,7 @@
  */
 
 
+require 'models/Error_404_model.php';
 
 class Error_404 extends Controller
 {
@@ -14,12 +15,13 @@ class Error_404 extends Controller
 
         parent::__construct();
 
-        echo 'Error_404';
+        $this->index();
     }
 
     public function index(){
 
-        echo 'Error_404';
+        $models = new Error_404_model();
+        $models->index();
 
     }
 }

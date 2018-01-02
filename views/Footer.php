@@ -1,1 +1,1 @@
-<footer ></footer></html>
+<footer class="py-5 bg-dark">    <div class="container">        <p class="m-0 text-center text-white">Copyright © Your Website 2017</p>    </div>    <!-- /.container --></footer><!-- Bootstrap core JavaScript --><script src="/public/js/jquery-3.2.1.min.js"></script><script src="/public/js/bootstrap.js"></script></body></html>

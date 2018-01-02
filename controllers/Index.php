@@ -5,7 +5,8 @@
  * Time: 1:19 PM
  */
 
-require './models/Index_model.php';
+
+require 'models/Index_model.php';
 
 class Index extends Controller
 {
@@ -18,8 +19,8 @@ class Index extends Controller
 
     public function index(){
 
-        $views = new Index_model();
-        $views->index();
+        $models = new Index_model();
+        $models->index();
     }
 
     public function method(){

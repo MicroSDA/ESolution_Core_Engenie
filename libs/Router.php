@@ -5,7 +5,6 @@
  * Time: 1:19 PM
  */
 
-require 'controllers/Controller.php';
 
 class Router {
 
@@ -50,6 +49,7 @@ class Router {
            case 'error':
               require 'controllers/Error_404.php';
               $app_controller = new Error_404();
+
               break;
 
        }
@@ -66,19 +66,21 @@ class Router {
        $this->URL = explode('/',$this->URL);
        // Prepare controller name for check
 
-       if(!empty($this->URL[2])){
+       if(!empty($this->URL[1])){
+
            //if class name isn't null
-           $this->controller['class'] = $this->URL[2];
+           $this->controller['class'] = $this->URL[1];
+       }
+
+       if(!empty($this->URL[2])){
+
+           //if method name isn't null
+           $this->controller['method'] = $this->URL[2];
        }
 
        if(!empty($this->URL[3])){
            //if method name isn't null
-           $this->controller['method'] = $this->URL[3];
-       }
-
-       if(!empty($this->URL[4])){
-           //if parameters aren't null
-           $this->controller['parameters'] = $this->URL[4];
+           $this->controller['parameters'] = $this->URL[3];
        }
 
 
