@@ -5,7 +5,7 @@
  * Time: 2:24 PM
  */
 
-require 'libs/Router.php';
+require 'libs/bootstrap.php';
 
 
 $router = new Router();

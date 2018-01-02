@@ -4,7 +4,7 @@
  * Date: 12/30/2017
  * Time: 7:58 PM
  */
-require 'Model.php';
+
 
 class Index_model extends Model
 {
